@@ -1,0 +1,50 @@
+# create user 
+useradd username
+
+# displays user info
+id username
+
+When we create user in Linux, by default it will create one group with same username
+
+# create group
+groupadd groupname
+
+# check all users info
+cat /etc/passwd
+
+# check all groups info
+cat /etc/group
+
+# check all passwords info (will displays in encrypted format)
+cat /etc/shadow
+
+In Linux, A user must have one primary group and atleast one secondary group (it can be more)
+
+# add user to group
+usermod -g groupname username
+
+# add user to secondary group
+usermod -aG groupname username
+
+# set the password to user
+passwd username
+
+# edit ssh config file adn set PasswordAuthentication to yes
+vim /etc/ssh/sshd_config
+
+# check the file syntax
+sshd -t
+
+# restart sshd
+systemctl restart sshd
+
+# login to server using username and password
+ssh username@publicip
+
+# check user login history
+last
+
+# remove user 
+gpasswd -d username groupname
+usermod -g groupname username
+userdel username
